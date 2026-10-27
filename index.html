@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Controle IoT | Telemetria e Acionamento</title>
+  <meta name="description" content="Painel de controle IoT responsivo com cards de telemetria (temperatura, umidade, luminosidade, pressão) e seção de acionamento de dispositivos.">
+  <meta name="author" content="Vitória">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="Painel de Controle IoT">
+  <meta property="og:description" content="Monitoramento de telemetria e acionamento de dispositivos em um layout responsivo.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">Painel <span>IoT</span></h1>
+      <nav aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="#telemetria">Telemetria</a></li>
+          <li><a href="#acionamento">Acionamento</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+      </nav>
+      <p class="status-online" role="status">
+        <span class="dot" aria-hidden="true"></span> Dispositivo online
+      </p>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+
+    <section id="telemetria" aria-labelledby="titulo-telemetria">
+      <h2 id="titulo-telemetria">Telemetria em tempo real</h2>
+      <p class="section-desc">Leituras dos sensores conectados ao microcontrolador.</p>
+
+      <div class="cards">
+        <article class="card">
+          <header class="card-header">
+            <h3>Temperatura</h3>
+            <span class="badge ok">Normal</span>
+          </header>
+          <p class="valor"><data value="26.4">26,4</data><span class="unidade">°C</span></p>
+          <p class="card-info">Sensor DHT22 · Mín 22 °C · Máx 30 °C</p>
+        </article>
+
+        <article class="card">
+          <header class="card-header">
+            <h3>Umidade</h3>
+            <span class="badge ok">Normal</span>
+          </header>
+          <p class="valor"><data value="58">58</data><span class="unidade">%</span></p>
+          <p class="card-info">Sensor DHT22 · Ideal entre 40% e 70%</p>
+        </article>
+
+        <article class="card">
+          <header class="card-header">
+            <h3>Luminosidade</h3>
+            <span class="badge alerta">Baixa</span>
+          </header>
+          <p class="valor"><data value="320">320</data><span class="unidade">lux</span></p>
+          <p class="card-info">Sensor LDR · Atualizado há 5 s</p>
+        </article>
+
+        <article class="card">
+          <header class="card-header">
+            <h3>Pressão</h3>
+            <span class="badge ok">Normal</span>
+          </header>
+          <p class="valor"><data value="1013">1013</data><span class="unidade">hPa</span></p>
+          <p class="card-info">Sensor BMP280 · Nível do mar</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="acionamento" aria-labelledby="titulo-acionamento">
+      <h2 id="titulo-acionamento">Acionamento de dispositivos</h2>
+      <p class="section-desc">Ligue ou desligue os atuadores conectados ao sistema.</p>
+
+      <form class="controles" aria-label="Controles de acionamento">
+        <fieldset class="controle">
+          <legend>Ventilador</legend>
+          <label class="switch">
+            <input type="checkbox" name="ventilador" role="switch">
+            <span class="slider" aria-hidden="true"></span>
+            <span class="switch-texto">Ligar ventilador</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="controle">
+          <legend>Iluminação</legend>
+          <label class="switch">
+            <input type="checkbox" name="iluminacao" role="switch" checked>
+            <span class="slider" aria-hidden="true"></span>
+            <span class="switch-texto">Ligar iluminação</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="controle">
+          <legend>Bomba d'água</legend>
+          <label class="switch">
+            <input type="checkbox" name="bomba" role="switch">
+            <span class="slider" aria-hidden="true"></span>
+            <span class="switch-texto">Ligar bomba</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="controle">
+          <legend>Modo de operação</legend>
+          <label for="modo" class="visually-hidden">Selecione o modo</label>
+          <select id="modo" name="modo">
+            <option value="auto" selected>Automático</option>
+            <option value="manual">Manual</option>
+            <option value="eco">Econômico</option>
+          </select>
+        </fieldset>
+
+        <div class="acoes">
+          <button type="submit" class="btn btn-primario">Aplicar comandos</button>
+          <button type="reset" class="btn btn-secundario">Restaurar padrão</button>
+          <button type="button" class="btn btn-emergencia">Parada de emergência</button>
+        </div>
+      </form>
+    </section>
+
+    <aside id="sobre" class="sobre" aria-labelledby="titulo-sobre">
+      <h2 id="titulo-sobre">Sobre o painel</h2>
+      <p>Este painel foi construído com HTML5 semântico e CSS3 responsivo para visualizar dados de sensores e controlar atuadores em projetos de Internet das Coisas.</p>
+    </aside>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Painel de Controle IoT · Atividade de HTML5 e CSS3 · SENAI</p>
+    </div>
+  </footer>
+</body>
+</html>

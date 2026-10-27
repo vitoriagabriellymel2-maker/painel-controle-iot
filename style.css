@@ -1,0 +1,417 @@
+/* ===== Variáveis e reset ===== */
+:root {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --bg-header: #020617;
+  --borda: #334155;
+  --texto: #e2e8f0;
+  --texto-suave: #94a3b8;
+  --destaque: #38bdf8;
+  --ok: #22c55e;
+  --alerta: #f59e0b;
+  --perigo: #ef4444;
+  --raio: 12px;
+  --sombra: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+}
+
+/* ===== Acessibilidade ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--destaque);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+/* ===== Cabeçalho ===== */
+.site-header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--borda);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-block: 0.9rem;
+}
+
+.logo {
+  font-size: 1.4rem;
+}
+
+.logo span {
+  color: var(--destaque);
+}
+
+.nav-list {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.nav-list a {
+  color: var(--texto-suave);
+  text-decoration: none;
+  font-weight: 500;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-list a:hover {
+  color: var(--texto);
+  border-color: var(--destaque);
+}
+
+.status-online {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ok);
+  animation: pulso 2s infinite;
+}
+
+@keyframes pulso {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  50% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+}
+
+/* ===== Conteúdo principal ===== */
+main {
+  flex: 1;
+  padding-block: 2rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.section-desc {
+  color: var(--texto-suave);
+  margin-bottom: 1.25rem;
+}
+
+/* ===== Cards de telemetria ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+  box-shadow: var(--sombra);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--destaque);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+
+.valor {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-block: 0.75rem 0.25rem;
+}
+
+.unidade {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--destaque);
+  margin-left: 0.3rem;
+}
+
+.card-info {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+}
+
+.badge.ok {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--ok);
+}
+
+.badge.alerta {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--alerta);
+}
+
+/* ===== Acionamento ===== */
+.controles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.controle {
+  background: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.controle legend {
+  padding-inline: 0.5rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+/* Switch feito só com CSS */
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 52px;
+  height: 28px;
+}
+
+.slider {
+  flex-shrink: 0;
+  width: 52px;
+  height: 28px;
+  background: var(--borda);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.25s;
+}
+
+.slider::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.25s;
+}
+
+.switch input:checked + .slider {
+  background: var(--ok);
+}
+
+.switch input:checked + .slider::after {
+  transform: translateX(24px);
+}
+
+.switch input:focus-visible + .slider {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Botões */
+.acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  filter: brightness(1.15);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primario {
+  background: var(--destaque);
+  color: #00212e;
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--texto);
+  border-color: var(--borda);
+}
+
+.btn-emergencia {
+  background: var(--perigo);
+  color: #fff;
+  margin-left: auto;
+}
+
+/* ===== Sobre ===== */
+.sobre {
+  background: var(--bg-card);
+  border-left: 4px solid var(--destaque);
+  border-radius: var(--raio);
+  padding: 1.25rem 1.5rem;
+}
+
+.sobre p {
+  color: var(--texto-suave);
+  max-width: 70ch;
+}
+
+/* ===== Rodapé ===== */
+.site-footer {
+  background: var(--bg-header);
+  border-top: 1px solid var(--borda);
+  padding-block: 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .valor {
+    font-size: 2.2rem;
+  }
+
+  .btn-emergencia {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-list {
+    gap: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .acoes {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+section,
+aside {
+  scroll-margin-top: 5rem;
+}
